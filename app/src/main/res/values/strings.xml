@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TrackSurvey</string>
+    <string name="trailersCount">Trailers Count:</string>
+    <string name="height">Height:</string>
+    <string name="width">Width:</string>
+    <string name="weight">Weight:</string>
+    <string name="weightPerAxle">Weight per axle:</string>
+    <string name="maxAllowedWeight">Max allowed weight:</string>
+</resources>
