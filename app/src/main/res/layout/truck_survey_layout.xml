@@ -187,10 +187,10 @@
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
 
-        <androidx.appcompat.widget.AppCompatSpinner
+        <com.route4me.trucksurvey.view.MultiSpinner
             android:id="@+id/hazardousGoodsSpinner"
             android:layout_width="match_parent"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"

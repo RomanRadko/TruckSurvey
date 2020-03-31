@@ -1,5 +1,7 @@
 package com.route4me.trucksurvey.model;
 
+import java.util.List;
+
 public class TruckParams {
 
     private int trailersCount;
@@ -8,7 +10,7 @@ public class TruckParams {
     private float weight;
     private float weightPerAxle;
     private float maxAllowedWeight;
-    private HazardousGood hazardousGood;
+    private List<HazardousGood> hazardousGoods;
     private boolean isTunnelsAllowed;
     private boolean isDifficultTurnsAllowed;
 
@@ -41,8 +43,8 @@ public class TruckParams {
         return maxAllowedWeight;
     }
 
-    public HazardousGood getHazardousGood() {
-        return hazardousGood;
+    public List<HazardousGood> getHazardousGoods() {
+        return hazardousGoods;
     }
 
     public boolean isTunnelsAllowed() {
@@ -99,8 +101,8 @@ public class TruckParams {
             return this;
         }
 
-        public Builder setHazardousGoods(HazardousGood hazardousGood) {
-            TruckParams.this.hazardousGood = hazardousGood;
+        public Builder setHazardousGoods(List<HazardousGood> hazardousGoods) {
+            TruckParams.this.hazardousGoods = hazardousGoods;
 
             return this;
         }
