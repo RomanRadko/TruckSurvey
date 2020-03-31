@@ -159,4 +159,18 @@
 
     </LinearLayout>
 
+    <com.route4me.trucksurvey.view.BaseTextView
+        android:id="@+id/submitBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_border"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/submit"
+        android:layout_marginBottom="40dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
 </RelativeLayout>
