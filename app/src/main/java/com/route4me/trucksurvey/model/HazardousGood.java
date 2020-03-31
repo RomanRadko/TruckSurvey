@@ -1,6 +1,6 @@
 package com.route4me.trucksurvey.model;
 
-public enum HazardousGoods {
+public enum HazardousGood {
     Explosive,
     Gas,
     Flammable,

@@ -8,7 +8,7 @@ public class TruckParams {
     private float weight;
     private float weightPerAxle;
     private float maxAllowedWeight;
-    private HazardousGoods hazardousGoods;
+    private HazardousGood hazardousGood;
     private boolean isTunnelsAllowed;
     private boolean isDifficultTurnsAllowed;
 
@@ -41,8 +41,8 @@ public class TruckParams {
         return maxAllowedWeight;
     }
 
-    public HazardousGoods getHazardousGoods() {
-        return hazardousGoods;
+    public HazardousGood getHazardousGood() {
+        return hazardousGood;
     }
 
     public boolean isTunnelsAllowed() {
@@ -99,8 +99,8 @@ public class TruckParams {
             return this;
         }
 
-        public Builder setHazardousGoods(HazardousGoods hazardousGoods) {
-            TruckParams.this.hazardousGoods = hazardousGoods;
+        public Builder setHazardousGoods(HazardousGood hazardousGood) {
+            TruckParams.this.hazardousGood = hazardousGood;
 
             return this;
         }

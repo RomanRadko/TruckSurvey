@@ -7,4 +7,7 @@
     <string name="weightPerAxle">Weight per axle:</string>
     <string name="maxAllowedWeight">Max allowed weight:</string>
     <string name="submit">Submit</string>
+    <string name="hazardousGood">Hazardous goods:</string>
+    <string name="isTunnelsAllowed">Are tunnels allowed?</string>
+    <string name="isDifficultTurnsAllowed">Are difficult turns allowed?</string>
 </resources>

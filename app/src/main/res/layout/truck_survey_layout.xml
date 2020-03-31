@@ -71,6 +71,36 @@
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp" />
 
+        <com.route4me.trucksurvey.view.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/hazardousGood"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <com.route4me.trucksurvey.view.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/isTunnelsAllowed"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <com.route4me.trucksurvey.view.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/isDifficultTurnsAllowed"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
     </LinearLayout>
 
     <View
@@ -157,6 +187,32 @@
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
 
+        <androidx.appcompat.widget.AppCompatSpinner
+            android:id="@+id/hazardousGoodsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/isTunnelsAllowed"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:id="@+id/isDifTurnsAllowed"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp" />
+
     </LinearLayout>
 
     <com.route4me.trucksurvey.view.BaseTextView
@@ -165,11 +221,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/btn_border"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:text="@string/submit"
-        android:layout_marginBottom="40dp"
         android:textColor="@android:color/white"
         android:textSize="20sp" />
 
