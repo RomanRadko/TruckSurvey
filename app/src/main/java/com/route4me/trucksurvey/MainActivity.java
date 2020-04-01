@@ -1,9 +1,11 @@
 package com.route4me.trucksurvey;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
 import com.route4me.trucksurvey.model.TruckParams;
 import com.route4me.trucksurvey.view.TruckSurveyView;
 
@@ -14,6 +16,8 @@ import static com.route4me.trucksurvey.model.HazardousGood.Flammable;
 import static com.route4me.trucksurvey.model.HazardousGood.Gas;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = MainActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,5 +35,11 @@ public class MainActivity extends AppCompatActivity {
                 .setIsTunnelsAllowed(false)
                 .setHazardousGoods(Arrays.asList(Explosive, Gas, Flammable))
                 .build());
+        truckSurveyView.setSubmitCallback(new TruckSurveySubmitCallback() {
+            @Override
+            public void onSubmit(TruckParams params) {
+                Log.d(TAG, "TruckParams ::: " + params);
+            }
+        });
     }
 }

@@ -1,5 +1,7 @@
 package com.route4me.trucksurvey.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
 public class TruckParams {
@@ -125,4 +127,22 @@ public class TruckParams {
 
     }
 
+    @NonNull
+    @Override
+    public String toString() {
+        String string = "Truck Params \n trailersCount:" + trailersCount + "\n" +
+                "height: " + height + "\n" +
+                "width: " + width + "\n" +
+                "weight: " + weight + "\n" +
+                "weightPerAxle: " + weightPerAxle + "\n" +
+                "maxAllowedWeight: " + maxAllowedWeight + "\n" +
+                "isTunnelsAllowed: " + isTunnelsAllowed + "\n" +
+                "isDifficultTurnsAllowed: " + isDifficultTurnsAllowed + "\n" +
+                "hazardousGoods: ";
+        StringBuilder hazardousGoodStr = new StringBuilder();
+        for (HazardousGood hazardousGood : hazardousGoods) {
+            hazardousGoodStr.append(hazardousGood).append(" ");
+        }
+        return string + hazardousGoodStr;
+    }
 }

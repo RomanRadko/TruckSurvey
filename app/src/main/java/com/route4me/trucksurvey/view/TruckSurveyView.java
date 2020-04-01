@@ -8,10 +8,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatCheckBox;
 
 import com.route4me.trucksurvey.R;
 import com.route4me.trucksurvey.model.HazardousGood;
+import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
 import com.route4me.trucksurvey.model.TruckParams;
 
 import java.util.ArrayList;
@@ -28,7 +28,8 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     private CheckBox isTunnelsAllowed;
     private CheckBox isDifTurnsAllowed;
     private MultiSpinner hazardousGoodsSpinner;
-    private TextView submitBtn;
+    private List<HazardousGood> selectedHazardousGoods = new ArrayList<>();
+    private TruckSurveySubmitCallback submitCallback;
 
     public TruckSurveyView(Context context) {
         super(context);
@@ -55,13 +56,26 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
             maxAllowedWeight.setText(String.valueOf(params.getMaxAllowedWeight()));
             isTunnelsAllowed.setActivated(params.isTunnelsAllowed());
             isDifTurnsAllowed.setChecked(params.isDifficultTurnsAllowed());
+            selectedHazardousGoods = params.getHazardousGoods();
             hazardousGoodsSpinner.setSelectedItems(params.getHazardousGoods());
         }
     }
 
+    public void setSubmitCallback(TruckSurveySubmitCallback callback) {
+        submitCallback = callback;
+    }
+
     @Override
     public void onItemsSelected(boolean[] selected) {
-
+        selectedHazardousGoods.clear();
+        for (boolean selection : selected) {
+            for (HazardousGood hazardousGood : HazardousGood.values()) {
+                if (selection) {
+                    selectedHazardousGoods.add(hazardousGood);
+                    break;
+                }
+            }
+        }
     }
 
     private void init() {
@@ -89,11 +103,25 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     }
 
     private void initSubmitBtn() {
-        submitBtn = findViewById(R.id.submitBtn);
+        TextView submitBtn = findViewById(R.id.submitBtn);
         submitBtn.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
+                submitCallback.onSubmit(readParams());
+            }
 
+            private TruckParams readParams() {
+                return TruckParams.newBuilder()
+                        .setTrailersCount(Integer.parseInt(trailersCount.getText().toString()))
+                        .setHeight(Float.parseFloat(height.getText().toString()))
+                        .setWidth(Float.parseFloat(width.getText().toString()))
+                        .setWeight(Float.parseFloat(weight.getText().toString()))
+                        .setWeightPerAxle(Float.parseFloat(weightPerAxle.getText().toString()))
+                        .setMaxAllowedWeight(Float.parseFloat(maxAllowedWeight.getText().toString()))
+                        .setIsTunnelsAllowed(isTunnelsAllowed.isChecked())
+                        .setIsDifficultTurnsAllowed(isDifTurnsAllowed.isChecked())
+                        .setHazardousGoods(selectedHazardousGoods)
+                        .build();
             }
         });
     }
