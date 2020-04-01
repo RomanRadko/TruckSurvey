@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import androidx.appcompat.widget.AppCompatSpinner;
 
 import com.route4me.trucksurvey.R;
+import com.route4me.trucksurvey.model.HazardousGood;
 
 import java.util.Arrays;
 import java.util.List;
@@ -41,27 +42,7 @@ public class MultiSpinner extends AppCompatSpinner implements
     @Override
     public void onCancel(DialogInterface dialog) {
         // refresh text on spinner
-        StringBuilder spinnerBuffer = new StringBuilder();
-        boolean someUnselected = false;
-        for (int i = 0; i < items.size(); i++) {
-            if (selected[i]) {
-                spinnerBuffer.append(items.get(i));
-                spinnerBuffer.append(", ");
-            } else {
-                someUnselected = true;
-            }
-        }
-        String spinnerText;
-        if (someUnselected) {
-            spinnerText = spinnerBuffer.toString();
-            if (spinnerText.length() > 2)
-                spinnerText = spinnerText.substring(0, spinnerText.length() - 2);
-        } else {
-            spinnerText = defaultText;
-        }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(),
-                R.layout.hazardous_spinner_item,
-                new String[]{spinnerText});
+        ArrayAdapter<String> adapter = refreshAdapter();
         setAdapter(adapter);
         listener.onItemsSelected(selected);
     }
@@ -70,7 +51,7 @@ public class MultiSpinner extends AppCompatSpinner implements
     public boolean performClick() {
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMultiChoiceItems(
-                items.toArray(new CharSequence[items.size()]), selected, this);
+                items.toArray(new CharSequence[0]), selected, this);
         builder.setPositiveButton(android.R.string.ok,
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -89,7 +70,7 @@ public class MultiSpinner extends AppCompatSpinner implements
         this.defaultText = allText;
         this.listener = listener;
 
-        // all selected by default
+        // all not selected by default
         selected = new boolean[items.size()];
         Arrays.fill(selected, false);
 
@@ -98,6 +79,45 @@ public class MultiSpinner extends AppCompatSpinner implements
                 android.R.layout.simple_spinner_item, new String[]{allText});
         setAdapter(adapter);
     }
+
+    public void setSelectedItems(List<HazardousGood> hazardousGoods) {
+        selected = new boolean[items.size()];
+        for (int i = 0; i < selected.length; i++) {
+            for (HazardousGood item : hazardousGoods) {
+                if (HazardousGood.values()[i] == item) {
+                    selected[i] = true;
+                    break;
+                }
+            }
+        }
+        ArrayAdapter<String> adapter = refreshAdapter();
+        setAdapter(adapter);
+    }
+
+    private ArrayAdapter<String> refreshAdapter() {
+        StringBuilder spinnerBuffer = new StringBuilder();
+        boolean someUnselected = false;
+        for (int i = 0; i < items.size(); i++) {
+            if (selected[i]) {
+                spinnerBuffer.append(items.get(i));
+                spinnerBuffer.append(", ");
+            } else {
+                someUnselected = true;
+            }
+        }
+        String spinnerText;
+        if (someUnselected) {
+            spinnerText = spinnerBuffer.toString();
+            if (spinnerText.length() > 2)
+                spinnerText = spinnerText.substring(0, spinnerText.length() - 2);
+        } else {
+            spinnerText = defaultText;
+        }
+        return new ArrayAdapter<>(getContext(),
+                R.layout.hazardous_spinner_item,
+                new String[]{spinnerText});
+    }
+
 
     public interface MultiSpinnerListener {
         void onItemsSelected(boolean[] selected);

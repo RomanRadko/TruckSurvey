@@ -77,16 +77,6 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:gravity="center"
-            android:text="@string/hazardousGood"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
-
-        <com.route4me.trucksurvey.view.BaseTextView
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="20dp"
-            android:gravity="center"
             android:text="@string/isTunnelsAllowed"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp" />
@@ -98,6 +88,16 @@
             android:layout_marginTop="20dp"
             android:gravity="center"
             android:text="@string/isDifficultTurnsAllowed"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="20sp" />
+
+        <com.route4me.trucksurvey.view.BaseTextView
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="@string/hazardousGood"
             android:textColor="@color/colorPrimaryDark"
             android:textSize="20sp" />
 
@@ -124,6 +124,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:background="@color/color_input_bg"
+            android:gravity="center"
             android:inputType="number"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -136,6 +137,7 @@
             android:layout_marginEnd="20dp"
             android:background="@color/color_input_bg"
             android:ems="10"
+            android:gravity="center"
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -148,6 +150,7 @@
             android:layout_marginEnd="20dp"
             android:background="@color/color_input_bg"
             android:ems="10"
+            android:gravity="center"
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -160,6 +163,7 @@
             android:layout_marginEnd="20dp"
             android:background="@color/color_input_bg"
             android:ems="10"
+            android:gravity="center"
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -172,6 +176,7 @@
             android:layout_marginEnd="20dp"
             android:background="@color/color_input_bg"
             android:ems="10"
+            android:gravity="center"
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
 
@@ -184,18 +189,9 @@
             android:layout_marginEnd="20dp"
             android:background="@color/color_input_bg"
             android:ems="10"
+            android:gravity="center"
             android:inputType="numberDecimal|numberSigned"
             android:textColor="@color/colorPrimaryDark" />
-
-        <com.route4me.trucksurvey.view.MultiSpinner
-            android:id="@+id/hazardousGoodsSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_gravity="end"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:background="@android:drawable/btn_dropdown"
-            android:spinnerMode="dropdown" />
 
         <androidx.appcompat.widget.AppCompatCheckBox
             android:id="@+id/isTunnelsAllowed"
@@ -212,6 +208,17 @@
             android:layout_gravity="end"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp" />
+
+        <com.route4me.trucksurvey.view.MultiSpinner
+            android:id="@+id/hazardousGoodsSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:background="@android:drawable/btn_dropdown"
+            android:gravity="center"
+            android:spinnerMode="dropdown" />
 
     </LinearLayout>
 
