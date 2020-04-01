@@ -1,13 +1,24 @@
 <resources>
-    <string name="app_name">TrackSurvey</string>
-    <string name="trailersCount">Trailers Count:</string>
+    <string name="app_name">Track Options</string>
+    <string name="trailersCount">Number of truck trailers</string>
     <string name="height">Height:</string>
     <string name="width">Width:</string>
     <string name="weight">Weight:</string>
     <string name="weightPerAxle">Weight per axle:</string>
-    <string name="maxAllowedWeight">Max allowed weight:</string>
+    <string name="maxAllowedWeight">Maximum allowed truck weight</string>
     <string name="submit">Submit</string>
     <string name="hazardousGood">Hazardous goods:</string>
     <string name="isTunnelsAllowed">Are tunnels allowed?</string>
     <string name="isDifficultTurnsAllowed">Are difficult turns allowed?</string>
+    <string name="truckSize">Truck size</string>
+    <string name="truckWeightLbl">Truck weight</string>
+    <string name="truckHeight">Height %1$.2f ft</string>
+    <string name="truckLength">Lenght %1$.2f ft</string>
+    <string name="truckWidth">Width %1$.2f ft</string>
+    <string name="truckWeight">%1$.2f ft</string>
+    <string name="truckWeightPerAxle">%1$.2f lbs per axle</string>
+    <string name="maxTruckWeight">%1$.2f lbs</string>
+    <string name="hazardous_goods">Hazardous goods</string>
+    <string name="are_tunnels_allowed">Are Tunnels allowed?</string>
+    <string name="are_dif_turns_allowed">Are difficult turns allowed?</string>
 </resources>

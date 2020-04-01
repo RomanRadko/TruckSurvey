@@ -9,6 +9,7 @@ public class TruckParams {
     private int trailersCount;
     private float height;
     private float width;
+    private float length;
     private float weight;
     private float weightPerAxle;
     private float maxAllowedWeight;
@@ -35,6 +36,10 @@ public class TruckParams {
 
     public float getWeight() {
         return weight;
+    }
+
+    public float getLength() {
+        return length;
     }
 
     public float getWeightPerAxle() {
@@ -81,6 +86,12 @@ public class TruckParams {
 
         public Builder setWidth(float width) {
             TruckParams.this.width = width;
+
+            return this;
+        }
+
+        public Builder setLength(float length) {
+            TruckParams.this.length = length;
 
             return this;
         }
@@ -133,7 +144,7 @@ public class TruckParams {
         String string = "Truck Params \n trailersCount:" + trailersCount + "\n" +
                 "height: " + height + "\n" +
                 "width: " + width + "\n" +
-                "weight: " + weight + "\n" +
+                "length: " + length + "\n" +
                 "weightPerAxle: " + weightPerAxle + "\n" +
                 "maxAllowedWeight: " + maxAllowedWeight + "\n" +
                 "isTunnelsAllowed: " + isTunnelsAllowed + "\n" +

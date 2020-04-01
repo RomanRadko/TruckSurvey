@@ -3,16 +3,16 @@ package com.route4me.trucksurvey.view;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SwitchCompat;
 
 import com.route4me.trucksurvey.R;
 import com.route4me.trucksurvey.model.HazardousGood;
-import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
 import com.route4me.trucksurvey.model.TruckParams;
+import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +22,14 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     private TextView trailersCount;
     private TextView height;
     private TextView width;
+    private TextView length;
     private TextView weight;
     private TextView weightPerAxle;
     private TextView maxAllowedWeight;
-    private CheckBox isTunnelsAllowed;
-    private CheckBox isDifTurnsAllowed;
-    private MultiSpinner hazardousGoodsSpinner;
+    private TextView isTunnelsAllowedLbl;
+    private TextView isDifTurnsAllowedLbl;
+    private SwitchCompat isTunnelsAllowed;
+    private SwitchCompat isDifTurnsAllowed;
     private List<HazardousGood> selectedHazardousGoods = new ArrayList<>();
     private TruckSurveySubmitCallback submitCallback;
 
@@ -49,15 +51,18 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     public void bindData(TruckParams params) {
         if (params != null) {
             trailersCount.setText(String.valueOf(params.getTrailersCount()));
-            height.setText(String.valueOf(params.getHeight()));
-            width.setText(String.valueOf(params.getWidth()));
-            weight.setText(String.valueOf(params.getWeight()));
-            weightPerAxle.setText(String.valueOf(params.getWeightPerAxle()));
-            maxAllowedWeight.setText(String.valueOf(params.getMaxAllowedWeight()));
+            height.setText(getResources().getString(R.string.truckHeight, params.getHeight()));
+            length.setText(getResources().getString(R.string.truckLength, params.getLength()));
+            weight.setText(getResources().getString(R.string.truckWeight, params.getWeight()));
+            width.setText(getResources().getString(R.string.truckWidth, params.getWidth()));
+            weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, params.getWeightPerAxle()));
+            maxAllowedWeight.setText(getResources().getString(R.string.maxTruckWeight, params.getMaxAllowedWeight()));
             isTunnelsAllowed.setActivated(params.isTunnelsAllowed());
+            isTunnelsAllowedLbl.setText(params.isTunnelsAllowed() ? "Yes" : "No");
             isDifTurnsAllowed.setChecked(params.isDifficultTurnsAllowed());
+            isDifTurnsAllowedLbl.setText(params.isDifficultTurnsAllowed() ? "Yes" : "No");
             selectedHazardousGoods = params.getHazardousGoods();
-            hazardousGoodsSpinner.setSelectedItems(params.getHazardousGoods());
+//            hazardousGoodsSpinner.setSelectedItems(params.getHazardousGoods());
         }
     }
 
@@ -81,25 +86,28 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     private void init() {
         inflate(getContext(), R.layout.truck_survey_layout, this);
         //get all fields
-        trailersCount = findViewById(R.id.trailersCount);
-        height = findViewById(R.id.height);
-        width = findViewById(R.id.width);
-        weight = findViewById(R.id.weight);
-        weightPerAxle = findViewById(R.id.weightPerAxle);
-        maxAllowedWeight = findViewById(R.id.maxAllowedWeight);
+        trailersCount = findViewById(R.id.trailersCountValue);
+        height = findViewById(R.id.truckHeightValue);
+        width = findViewById(R.id.truckWidthValue);
+        length = findViewById(R.id.truckLengthValue);
+        weight = findViewById(R.id.truckWeightValue);
+        weightPerAxle = findViewById(R.id.truckWeightPerAxleValue);
+        maxAllowedWeight = findViewById(R.id.maxAllowedWeightValue);
         isTunnelsAllowed = findViewById(R.id.isTunnelsAllowed);
-        isDifTurnsAllowed = findViewById(R.id.isDifTurnsAllowed);
+        isTunnelsAllowedLbl = findViewById(R.id.tunnelsAllowedValue);
+        isDifTurnsAllowed = findViewById(R.id.isDifficultTurnsAllowed);
+        isDifTurnsAllowedLbl = findViewById(R.id.difficultTurnsAllowedValue);
         initHazardousGoodsSpinner();
         initSubmitBtn();
     }
 
     private void initHazardousGoodsSpinner() {
-        hazardousGoodsSpinner = findViewById(R.id.hazardousGoodsSpinner);
-        List<String> items = new ArrayList<>();
-        for (HazardousGood item : HazardousGood.values()) {
-            items.add(item.name());
-        }
-        hazardousGoodsSpinner.setItems(items, "", this);
+        View hazardousGoodsBtn = findViewById(R.id.hazardousGoodsBtn);
+//        List<String> items = new ArrayList<>();
+//        for (HazardousGood item : HazardousGood.values()) {
+//            items.add(item.name());
+//        }
+//        hazardousGoodsSpinner.setItems(items, "", this);
     }
 
     private void initSubmitBtn() {
