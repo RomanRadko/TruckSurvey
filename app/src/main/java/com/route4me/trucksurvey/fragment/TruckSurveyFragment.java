@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.route4me.trucksurvey.R;
-import com.route4me.trucksurvey.TruckSurveyActivity;
 import com.route4me.trucksurvey.model.TruckParams;
 import com.route4me.trucksurvey.model.TruckSize;
 import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
@@ -33,12 +32,6 @@ public class TruckSurveyFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.truck_survey_fragment_layout, container, false);
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        getActivity().setTitle(getResources().getString(R.string.truck_options));
     }
 
     @Override

@@ -4,7 +4,7 @@
     <string name="height">Height:</string>
     <string name="width">Width:</string>
     <string name="weight">Weight:</string>
-    <string name="weightPerAxle">Weight per axle:</string>
+    <string name="weightPerAxleLbl">Weight per axle:</string>
     <string name="maxAllowedWeight">Maximum allowed truck weight</string>
     <string name="submit">Submit</string>
     <string name="hazardousGood">Hazardous goods:</string>
@@ -15,7 +15,7 @@
     <string name="truckHeight">Height %1$.2f ft</string>
     <string name="truckLength">Length %1$.2f ft</string>
     <string name="truckWidth">Width %1$.2f ft</string>
-    <string name="truckWeight">%1$.2f ft</string>
+    <string name="truckWeightValue">%1$.2f ft</string>
     <string name="truckWeightPerAxle">%1$.2f lbs per axle</string>
     <string name="maxTruckWeight">%1$.2f lbs</string>
     <string name="hazardous_goods">Hazardous goods</string>
@@ -25,4 +25,12 @@
     <string name="truck_options">Truck Options</string>
     <string name="truck_width_title">Truck Width</string>
     <string name="truck_size_title">Truck Size</string>
+    <string name="ft">ft</string>
+    <string name="truckLengthLbl">Truck Length</string>
+    <string name="truckWidthLbl">Truck Width</string>
+    <string name="truckHeightLbl">Truck Height</string>
+    <string name="truckWeight">Truck Weight</string>
+    <string name="weightPerAxle">Weight Per Axle</string>
+    <string name="lbl">lbl</string>
+    <string name="save">Save</string>
 </resources>

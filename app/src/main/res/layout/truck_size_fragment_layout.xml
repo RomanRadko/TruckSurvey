@@ -1,8 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:orientation="vertical"
+    android:background="@android:color/white"
     android:clickable="true">
 
-</FrameLayout>
+    <com.route4me.trucksurvey.view.ParameterItemView
+        android:id="@+id/height"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:label="@string/ft"
+        app:title="@string/truckHeightLbl" />
+
+    <com.route4me.trucksurvey.view.ParameterItemView
+        android:id="@+id/length"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:label="@string/ft"
+        app:title="@string/truckLengthLbl" />
+
+    <com.route4me.trucksurvey.view.ParameterItemView
+        android:id="@+id/width"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        app:label="@string/ft"
+        app:title="@string/truckWidthLbl" />
+
+    <com.route4me.trucksurvey.view.BaseTextView
+        android:id="@+id/saveSizeBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/btn_border"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:text="@string/save"
+        android:textColor="@android:color/white"
+        android:textSize="20sp" />
+
+</LinearLayout>

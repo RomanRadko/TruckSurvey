@@ -11,11 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 
 import com.route4me.trucksurvey.R;
-import com.route4me.trucksurvey.fragment.TruckSurveyFragment;
 import com.route4me.trucksurvey.model.HazardousGood;
 import com.route4me.trucksurvey.model.TruckParams;
 import com.route4me.trucksurvey.model.TruckSize;
@@ -65,7 +62,7 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
             height.setText(getResources().getString(R.string.truckHeight, params.getSize().getHeight()));
             length.setText(getResources().getString(R.string.truckLength, params.getSize().getLength()));
             width.setText(getResources().getString(R.string.truckWidth, params.getSize().getWidth()));
-            weight.setText(getResources().getString(R.string.truckWeight, params.getTruckWeight().getWeight()));
+            weight.setText(getResources().getString(R.string.truckWeightValue, params.getTruckWeight().getWeight()));
             weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, params.getTruckWeight().getWeightPerAxle()));
             maxAllowedWeight.setText(getResources().getString(R.string.maxTruckWeight, params.getMaxAllowedWeight()));
             maxAllowedWeightInput.setText(String.valueOf(params.getMaxAllowedWeight()));

@@ -151,7 +151,7 @@
                 android:layout_height="20dp"
                 android:layout_gravity="start"
                 android:gravity="center"
-                android:text="@string/truckWeight"
+                android:text="@string/truckWeightValue"
                 android:textColor="@color/colorSecondaryDark"
                 android:textSize="14sp" />
 
