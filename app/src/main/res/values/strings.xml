@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Track Options</string>
+    <string name="app_name">Truck Survey</string>
     <string name="trailersCount">Number of truck trailers</string>
     <string name="height">Height:</string>
     <string name="width">Width:</string>
@@ -13,12 +13,16 @@
     <string name="truckSize">Truck size</string>
     <string name="truckWeightLbl">Truck weight</string>
     <string name="truckHeight">Height %1$.2f ft</string>
-    <string name="truckLength">Lenght %1$.2f ft</string>
+    <string name="truckLength">Length %1$.2f ft</string>
     <string name="truckWidth">Width %1$.2f ft</string>
     <string name="truckWeight">%1$.2f ft</string>
     <string name="truckWeightPerAxle">%1$.2f lbs per axle</string>
     <string name="maxTruckWeight">%1$.2f lbs</string>
     <string name="hazardous_goods">Hazardous goods</string>
+    <string name="hazardous_goods_title">Hazardous Goods</string>
     <string name="are_tunnels_allowed">Are Tunnels allowed?</string>
     <string name="are_dif_turns_allowed">Are difficult turns allowed?</string>
+    <string name="truck_options">Truck Options</string>
+    <string name="truck_width_title">Truck Width</string>
+    <string name="truck_size_title">Truck Size</string>
 </resources>

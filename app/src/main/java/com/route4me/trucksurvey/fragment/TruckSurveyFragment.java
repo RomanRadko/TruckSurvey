@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.route4me.trucksurvey.R;
+import com.route4me.trucksurvey.TruckSurveyActivity;
 import com.route4me.trucksurvey.model.TruckParams;
 import com.route4me.trucksurvey.model.TruckSize;
 import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
@@ -32,6 +33,12 @@ public class TruckSurveyFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.truck_survey_fragment_layout, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle(getResources().getString(R.string.truck_options));
     }
 
     @Override
@@ -86,24 +93,31 @@ public class TruckSurveyFragment extends Fragment {
     private void navigateTo(Screen screen) {
         Fragment fragment;
         String tag;
+        String headerTitle;
         switch (screen) {
             case SIZE:
                 fragment = new TruckSizeFragment();
                 tag = TruckSizeFragment.class.getSimpleName();
+                headerTitle = getResources().getString(R.string.truck_size_title);
+                ;
                 break;
             case WEIGHT:
                 fragment = new TruckWeightFragment();
                 tag = TruckWeightFragment.class.getSimpleName();
+                headerTitle = getResources().getString(R.string.truck_width_title);
                 break;
             case HAZARDOUS_GOODS:
                 fragment = new HazardousGoodsFragment();
                 tag = HazardousGoodsFragment.class.getSimpleName();
+                headerTitle = getResources().getString(R.string.hazardous_goods_title);
                 break;
             default:
                 fragment = this;
                 tag = TruckSurveyFragment.class.getSimpleName();
+                headerTitle = getResources().getString(R.string.truck_options);
         }
         if (getActivity() != null) {
+            getActivity().setTitle(headerTitle);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.container, fragment);
             transaction.addToBackStack(tag);

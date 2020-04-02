@@ -23,6 +23,7 @@ public class TruckSurveyActivity extends AppCompatActivity {
     }
 
     private void navigateToSurvey() {
+        setTitle(getResources().getString(R.string.truck_options));
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         Fragment surveyFragment = new TruckSurveyFragment();
         transaction.replace(R.id.container, surveyFragment);
