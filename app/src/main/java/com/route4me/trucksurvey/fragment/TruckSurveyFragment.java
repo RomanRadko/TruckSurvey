@@ -1,5 +1,7 @@
 package com.route4me.trucksurvey.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +29,10 @@ import static com.route4me.trucksurvey.model.HazardousGood.Gas;
 public class TruckSurveyFragment extends Fragment {
 
     private static final String TAG = TruckSurveyFragment.class.getSimpleName();
+    private static final int SIZE_DATA_CODE = 11;
+    private static final int WEIGHT_DATA_CODE = 22;
+    private static final int HAZARDOUS_GOODS_DATA_CODE = 33;
+    private TruckSurveyView truckSurveyView;
 
     @Nullable
     @Override
@@ -36,7 +42,7 @@ public class TruckSurveyFragment extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        TruckSurveyView truckSurveyView = view.findViewById(R.id.truckSurveyView);
+        truckSurveyView = view.findViewById(R.id.truckSurveyView);
         View weightBtn = truckSurveyView.findViewById(R.id.truckWeightBtn);
         View sizeBtn = truckSurveyView.findViewById(R.id.truckSizeBtn);
         View hazardousBtn = truckSurveyView.findViewById(R.id.hazardousGoodsBtn);
@@ -83,26 +89,54 @@ public class TruckSurveyFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+            switch (requestCode) {
+                case SIZE_DATA_CODE: {
+                    truckSurveyView.updateSize(TruckSize.newBuilder()
+                            .setHeight(Float.parseFloat(data.getExtras().get(TruckSizeFragment.HEIGHT_KEY).toString()))
+                            .setLength(Float.parseFloat(data.getExtras().get(TruckSizeFragment.LENGTH_KEY).toString()))
+                            .setWidth(Float.parseFloat(data.getExtras().get(TruckSizeFragment.WIDTH_KEY).toString())).build());
+                    break;
+                }
+                case WEIGHT_DATA_CODE: {
+                    truckSurveyView.updateWeight(TruckWeight.newBuilder()
+                            .setWeight(Float.parseFloat(data.getExtras().get(TruckWeightFragment.WEIGHT_KEY).toString()))
+                            .setWeightPerAxle(Float.parseFloat(data.getExtras().get(TruckWeightFragment.WEIGHT_PER_AXLE_KEY).toString())).build());
+                    break;
+                }
+                case HAZARDOUS_GOODS_DATA_CODE: {
+
+                    break;
+                }
+            }
+        }
+    }
+
     private void navigateTo(Screen screen) {
         Fragment fragment;
         String tag;
         String headerTitle;
+        int requestCode = 0;
         switch (screen) {
             case SIZE:
                 fragment = new TruckSizeFragment();
                 tag = TruckSizeFragment.class.getSimpleName();
                 headerTitle = getResources().getString(R.string.truck_size_title);
-                ;
+                requestCode = SIZE_DATA_CODE;
                 break;
             case WEIGHT:
                 fragment = new TruckWeightFragment();
                 tag = TruckWeightFragment.class.getSimpleName();
                 headerTitle = getResources().getString(R.string.truck_width_title);
+                requestCode = WEIGHT_DATA_CODE;
                 break;
             case HAZARDOUS_GOODS:
                 fragment = new HazardousGoodsFragment();
                 tag = HazardousGoodsFragment.class.getSimpleName();
                 headerTitle = getResources().getString(R.string.hazardous_goods_title);
+                requestCode = HAZARDOUS_GOODS_DATA_CODE;
                 break;
             default:
                 fragment = this;
@@ -111,6 +145,7 @@ public class TruckSurveyFragment extends Fragment {
         }
         if (getActivity() != null) {
             getActivity().setTitle(headerTitle);
+            fragment.setTargetFragment(TruckSurveyFragment.this, requestCode);
             FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
             transaction.add(R.id.container, fragment);
             transaction.addToBackStack(tag);

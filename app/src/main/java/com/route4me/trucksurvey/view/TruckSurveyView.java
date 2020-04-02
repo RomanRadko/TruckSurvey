@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -79,6 +80,17 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
         submitCallback = callback;
     }
 
+    public void updateSize(TruckSize sizeParams) {
+        height.setText(getResources().getString(R.string.truckHeight, sizeParams.getHeight()));
+        length.setText(getResources().getString(R.string.truckLength, sizeParams.getLength()));
+        width.setText(getResources().getString(R.string.truckWidth, sizeParams.getWidth()));
+    }
+
+    public void updateWeight(TruckWeight weightParams) {
+        weight.setText(getResources().getString(R.string.truckWeightValue, weightParams.getWeight()));
+        weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, weightParams.getWeightPerAxle()));
+    }
+
     @Override
     public void onItemsSelected(boolean[] selected) {
         selectedHazardousGoods.clear();
@@ -138,8 +150,18 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
         });
         isTunnelsAllowed = findViewById(R.id.isTunnelsAllowed);
         isTunnelsAllowedLbl = findViewById(R.id.tunnelsAllowedValue);
+        isTunnelsAllowed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isTunnelsAllowedLbl.setText(isChecked ? "Yes" : "No");
+            }
+        });
         isDifTurnsAllowed = findViewById(R.id.isDifficultTurnsAllowed);
         isDifTurnsAllowedLbl = findViewById(R.id.difficultTurnsAllowedValue);
+        isDifTurnsAllowed.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isDifTurnsAllowedLbl.setText(isChecked ? "Yes" : "No");
+            }
+        });
         initHazardousGoodsSpinner();
         initSubmitBtn();
     }

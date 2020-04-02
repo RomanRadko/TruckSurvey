@@ -1,5 +1,7 @@
 package com.route4me.trucksurvey.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -13,11 +15,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.route4me.trucksurvey.R;
-import com.route4me.trucksurvey.view.BaseTextView;
+import com.route4me.trucksurvey.TruckSurveyActivity;
 
 public class TruckWeightFragment extends Fragment {
 
-    private static final String TAG = TruckWeightFragment.class.getSimpleName();
+    static final String WEIGHT_KEY = "WEIGHT_KEY";
+    static final String WEIGHT_PER_AXLE_KEY = "WEIGHT_PER_AXLE_KEY";
+    private TextView saveBtn;
 
     private TextWatcher mTextWatcher = new TextWatcher() {
         @Override
@@ -50,12 +54,27 @@ public class TruckWeightFragment extends Fragment {
             weightInput.addTextChangedListener(mTextWatcher);
             weightPerAxleInput = getView().findViewById(R.id.weightPerAxle).findViewById(R.id.paramInput);
             weightPerAxleInput.addTextChangedListener(mTextWatcher);
+            saveBtn = getView().findViewById(R.id.saveWeightBtn);
+            saveBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent();
+                    getTargetFragment().onActivityResult(
+                            getTargetRequestCode(),
+                            Activity.RESULT_OK,
+                            intent.putExtra(WEIGHT_KEY, weightInput.getText())
+                                    .putExtra(WEIGHT_PER_AXLE_KEY, weightPerAxleInput.getText())
+                    );
+                    TruckSurveyActivity.hideKeyboard(getActivity());
+                    getActivity().getSupportFragmentManager().popBackStack();
+                }
+            });
             checkFields();
         }
     }
 
     private void checkFields() {
-        BaseTextView saveBtn = getView().findViewById(R.id.saveWeightBtn);
+        saveBtn = getView().findViewById(R.id.saveWeightBtn);
 
         String weightStr = weightInput.getText().toString();
         String weightPerAxleStr = weightPerAxleInput.getText().toString();
