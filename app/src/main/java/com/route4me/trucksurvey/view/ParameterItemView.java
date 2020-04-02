@@ -38,6 +38,7 @@ public class ParameterItemView extends RelativeLayout {
         super(context, attrs, defStyleAttr);
         readParams(context, attrs);
         init();
+        //todo: add validation for width
     }
 
     private void readParams(Context context, @Nullable AttributeSet attrs) {
