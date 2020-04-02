@@ -11,4 +11,5 @@
     <color name="border">#b17944</color>
     <color name="color_input_bg">#e9eaf6</color>
     <color name="size_item_bg">#F2F2F2</color>
+    <color name="error_color">#D64F4F</color>
 </resources>

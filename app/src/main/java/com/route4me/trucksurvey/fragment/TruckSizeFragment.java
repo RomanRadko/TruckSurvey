@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.route4me.trucksurvey.R;
 import com.route4me.trucksurvey.view.BaseTextView;
+import com.route4me.trucksurvey.view.ParameterItemView;
 
 public class TruckSizeFragment extends Fragment {
 
@@ -33,7 +34,7 @@ public class TruckSizeFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            checkFieldsForEmptyValues();
+            checkFields();
         }
     };
 
@@ -53,21 +54,31 @@ public class TruckSizeFragment extends Fragment {
             lengthInput.addTextChangedListener(mTextWatcher);
             widthInput = getView().findViewById(R.id.width).findViewById(R.id.paramInput);
             widthInput.addTextChangedListener(mTextWatcher);
-            checkFieldsForEmptyValues();
+            checkFields();
         }
     }
 
-    private void checkFieldsForEmptyValues() {
+    private void checkFields() {
         BaseTextView saveBtn = getView().findViewById(R.id.saveSizeBtn);
 
         String heightInputStr = heightInput.getText().toString();
         String lengthInputStr = lengthInput.getText().toString();
         String widthInputStr = widthInput.getText().toString();
+        ParameterItemView widthView = getView().findViewById(R.id.width);
+        //todo: maybe validation for other params should be also added?
+        boolean isWidthRight = false;
+        if (!widthInputStr.equals("")) {
+            isWidthRight = Float.parseFloat(widthInputStr) <= 32;
+            if (!isWidthRight) {
+                widthView.setErrorState(getString(R.string.wrong_width));
+            }
+        }
 
-        if (heightInputStr.equals("") || lengthInputStr.equals("") || widthInputStr.equals("")) {
+        if (heightInputStr.equals("") || lengthInputStr.equals("") || widthInputStr.equals("") || !isWidthRight) {
             saveBtn.setAlpha(0.6f);
             saveBtn.setEnabled(false);
         } else {
+            widthView.hideErrorLbl();
             saveBtn.setAlpha(1f);
             saveBtn.setEnabled(true);
         }

@@ -33,4 +33,5 @@
     <string name="weightPerAxle">Weight Per Axle</string>
     <string name="lbl">lbl</string>
     <string name="save">Save</string>
+    <string name="wrong_width">The biggest truck in the world is only 32 ft wide.</string>
 </resources>

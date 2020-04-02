@@ -30,7 +30,7 @@ public class TruckWeightFragment extends Fragment {
 
         @Override
         public void afterTextChanged(Editable editable) {
-            checkFieldsForEmptyValues();
+            checkFields();
         }
     };
     private TextView weightInput;
@@ -50,11 +50,11 @@ public class TruckWeightFragment extends Fragment {
             weightInput.addTextChangedListener(mTextWatcher);
             weightPerAxleInput = getView().findViewById(R.id.weightPerAxle).findViewById(R.id.paramInput);
             weightPerAxleInput.addTextChangedListener(mTextWatcher);
-            checkFieldsForEmptyValues();
+            checkFields();
         }
     }
 
-    private void checkFieldsForEmptyValues() {
+    private void checkFields() {
         BaseTextView saveBtn = getView().findViewById(R.id.saveWeightBtn);
 
         String weightStr = weightInput.getText().toString();

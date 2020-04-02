@@ -38,7 +38,17 @@ public class ParameterItemView extends RelativeLayout {
         super(context, attrs, defStyleAttr);
         readParams(context, attrs);
         init();
-        //todo: add validation for width
+    }
+
+    public void setErrorState(String errorMsg) {
+        TextView errorLbl = findViewById(R.id.errorLbl);
+        errorLbl.setVisibility(VISIBLE);
+        errorLbl.setText(errorMsg);
+    }
+
+    public void hideErrorLbl() {
+        TextView errorLbl = findViewById(R.id.errorLbl);
+        errorLbl.setVisibility(GONE);
     }
 
     private void readParams(Context context, @Nullable AttributeSet attrs) {
@@ -98,4 +108,5 @@ public class ParameterItemView extends RelativeLayout {
             }
         });
     }
+
 }

@@ -2,45 +2,62 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="50dp"
-    android:layout_marginRight="50dp"
-    android:background="@color/size_item_bg"
+    android:layout_marginLeft="40dp"
+    android:layout_marginRight="40dp"
     android:orientation="vertical">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/size_item_bg"
+        android:orientation="vertical">
+
+        <com.route4me.trucksurvey.view.BaseTextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:text="Truck Height"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="16sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.route4me.trucksurvey.view.BaseTextView
+                android:id="@+id/label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="20sp" />
+
+
+            <com.route4me.trucksurvey.view.BaseEditTextView
+                android:id="@+id/paramInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:paddingLeft="20dp"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="20sp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
     <com.route4me.trucksurvey.view.BaseTextView
-        android:id="@+id/title"
+        android:id="@+id/errorLbl"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginTop="10dp"
-        android:text="Truck Height"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="16sp" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.route4me.trucksurvey.view.BaseTextView
-            android:id="@+id/label"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:textColor="@color/colorSecondaryDark"
-            android:textSize="20sp" />
-
-
-        <com.route4me.trucksurvey.view.BaseEditTextView
-            android:id="@+id/paramInput"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal"
-            android:paddingLeft="20dp"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="20sp" />
-
-    </RelativeLayout>
+        android:textColor="@color/error_color"
+        android:textSize="13sp"
+        android:visibility="gone" />
 
 </LinearLayout>
