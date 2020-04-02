@@ -1,8 +1,11 @@
 package com.route4me.trucksurvey.view;
 
 import android.content.Context;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -20,12 +23,14 @@ import java.util.List;
 public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiSpinnerListener {
 
     private TextView trailersCount;
+    private EditText trailersCountInput;
     private TextView height;
     private TextView width;
     private TextView length;
     private TextView weight;
     private TextView weightPerAxle;
     private TextView maxAllowedWeight;
+    private EditText maxAllowedWeightInput;
     private TextView isTunnelsAllowedLbl;
     private TextView isDifTurnsAllowedLbl;
     private SwitchCompat isTunnelsAllowed;
@@ -51,12 +56,14 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     public void bindData(TruckParams params) {
         if (params != null) {
             trailersCount.setText(String.valueOf(params.getTrailersCount()));
+            trailersCountInput.setText(String.valueOf(params.getTrailersCount()));
             height.setText(getResources().getString(R.string.truckHeight, params.getHeight()));
             length.setText(getResources().getString(R.string.truckLength, params.getLength()));
             weight.setText(getResources().getString(R.string.truckWeight, params.getWeight()));
             width.setText(getResources().getString(R.string.truckWidth, params.getWidth()));
             weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, params.getWeightPerAxle()));
             maxAllowedWeight.setText(getResources().getString(R.string.maxTruckWeight, params.getMaxAllowedWeight()));
+            maxAllowedWeightInput.setText(String.valueOf(params.getMaxAllowedWeight()));
             isTunnelsAllowed.setActivated(params.isTunnelsAllowed());
             isTunnelsAllowedLbl.setText(params.isTunnelsAllowed() ? "Yes" : "No");
             isDifTurnsAllowed.setChecked(params.isDifficultTurnsAllowed());
@@ -87,12 +94,46 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
         inflate(getContext(), R.layout.truck_survey_layout, this);
         //get all fields
         trailersCount = findViewById(R.id.trailersCountValue);
+        trailersCountInput = findViewById(R.id.trailersCountInput);
+        trailersCountInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                trailersCount.setText(text);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         height = findViewById(R.id.truckHeightValue);
         width = findViewById(R.id.truckWidthValue);
         length = findViewById(R.id.truckLengthValue);
         weight = findViewById(R.id.truckWeightValue);
         weightPerAxle = findViewById(R.id.truckWeightPerAxleValue);
         maxAllowedWeight = findViewById(R.id.maxAllowedWeightValue);
+        maxAllowedWeightInput = findViewById(R.id.maxAllowedWeightInput);
+        maxAllowedWeightInput.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence text, int start, int before, int count) {
+                maxAllowedWeight.setText(getResources().getString(R.string.maxTruckWeight, Float.valueOf(text.toString())));
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
         isTunnelsAllowed = findViewById(R.id.isTunnelsAllowed);
         isTunnelsAllowedLbl = findViewById(R.id.tunnelsAllowedValue);
         isDifTurnsAllowed = findViewById(R.id.isDifficultTurnsAllowed);
