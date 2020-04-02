@@ -7,43 +7,26 @@ import java.util.List;
 public class TruckParams {
 
     private int trailersCount;
-    private float height;
-    private float width;
-    private float length;
-    private float weight;
-    private float weightPerAxle;
+    private TruckSize size;
+    private TruckWeight weight;
     private float maxAllowedWeight;
     private List<HazardousGood> hazardousGoods;
     private boolean isTunnelsAllowed;
     private boolean isDifficultTurnsAllowed;
 
-
     private TruckParams() {
-        // private constructor
     }
 
     public int getTrailersCount() {
         return trailersCount;
     }
 
-    public float getHeight() {
-        return height;
+    public TruckSize getSize() {
+        return size;
     }
 
-    public float getWidth() {
-        return width;
-    }
-
-    public float getWeight() {
+    public TruckWeight getTruckWeight() {
         return weight;
-    }
-
-    public float getLength() {
-        return length;
-    }
-
-    public float getWeightPerAxle() {
-        return weightPerAxle;
     }
 
     public float getMaxAllowedWeight() {
@@ -69,7 +52,6 @@ public class TruckParams {
     public class Builder {
 
         private Builder() {
-            // private constructor
         }
 
         public Builder setTrailersCount(int trailersCount) {
@@ -78,32 +60,14 @@ public class TruckParams {
             return this;
         }
 
-        public Builder setHeight(float height) {
-            TruckParams.this.height = height;
+        public Builder setSize(TruckSize size) {
+            TruckParams.this.size = size;
 
             return this;
         }
 
-        public Builder setWidth(float width) {
-            TruckParams.this.width = width;
-
-            return this;
-        }
-
-        public Builder setLength(float length) {
-            TruckParams.this.length = length;
-
-            return this;
-        }
-
-        public Builder setWeight(float weight) {
+        public Builder setWeight(TruckWeight weight) {
             TruckParams.this.weight = weight;
-
-            return this;
-        }
-
-        public Builder setWeightPerAxle(float weightPerAxle) {
-            TruckParams.this.weightPerAxle = weightPerAxle;
 
             return this;
         }
@@ -142,10 +106,8 @@ public class TruckParams {
     @Override
     public String toString() {
         String string = "Truck Params \n trailersCount:" + trailersCount + "\n" +
-                "height: " + height + "\n" +
-                "width: " + width + "\n" +
-                "length: " + length + "\n" +
-                "weightPerAxle: " + weightPerAxle + "\n" +
+                "size: " + size + "\n" +
+                "weight: " + weight + "\n" +
                 "maxAllowedWeight: " + maxAllowedWeight + "\n" +
                 "isTunnelsAllowed: " + isTunnelsAllowed + "\n" +
                 "isDifficultTurnsAllowed: " + isDifficultTurnsAllowed + "\n" +
