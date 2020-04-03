@@ -42,6 +42,8 @@ public class TruckSurveyView extends LinearLayout {
     private boolean[] hazardousGoodsSelections = new boolean[HazardousGood.values().length];
     private TruckSurveySubmitCallback submitCallback;
     private TruckParams data;
+    private TruckSize sizeParams;
+    private TruckWeight weightParams;
 
     public TruckSurveyView(Context context) {
         super(context);
@@ -63,9 +65,11 @@ public class TruckSurveyView extends LinearLayout {
         if (params != null) {
             trailersCount.setText(String.valueOf(params.getTrailersCount()));
             trailersCountInput.setText(String.valueOf(params.getTrailersCount()));
+            sizeParams = params.getSize();
             height.setText(getResources().getString(R.string.truckHeight, params.getSize().getHeight()));
             length.setText(getResources().getString(R.string.truckLength, params.getSize().getLength()));
             width.setText(getResources().getString(R.string.truckWidth, params.getSize().getWidth()));
+            weightParams = params.getTruckWeight();
             weight.setText(getResources().getString(R.string.truckWeightValue, params.getTruckWeight().getWeight()));
             weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, params.getTruckWeight().getWeightPerAxle()));
             maxAllowedWeight.setText(getResources().getString(R.string.maxTruckWeight, params.getMaxAllowedWeight()));
@@ -101,12 +105,14 @@ public class TruckSurveyView extends LinearLayout {
     }
 
     public void updateSize(TruckSize sizeParams) {
+        this.sizeParams = sizeParams;
         height.setText(getResources().getString(R.string.truckHeight, sizeParams.getHeight()));
         length.setText(getResources().getString(R.string.truckLength, sizeParams.getLength()));
         width.setText(getResources().getString(R.string.truckWidth, sizeParams.getWidth()));
     }
 
     public void updateWeight(TruckWeight weightParams) {
+        this.weightParams = weightParams;
         weight.setText(getResources().getString(R.string.truckWeightValue, weightParams.getWeight()));
         weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, weightParams.getWeightPerAxle()));
     }
@@ -205,16 +211,9 @@ public class TruckSurveyView extends LinearLayout {
             private TruckParams readParams() {
                 return TruckParams.newBuilder()
                         .setTrailersCount(Integer.parseInt(trailersCount.getText().toString()))
-                        .setSize(TruckSize.newBuilder()
-                                .setHeight(Float.parseFloat(height.getText().toString()))
-                                .setLength(Float.parseFloat(length.getText().toString()))
-                                .setWidth(Float.parseFloat(width.getText().toString()))
-                                .build())
-                        .setWeight(TruckWeight.newBuilder()
-                                .setWeight(Float.parseFloat(weight.getText().toString()))
-                                .setWeightPerAxle(Float.parseFloat(weightPerAxle.getText().toString()))
-                                .build())
-                        .setMaxAllowedWeight(Float.parseFloat(maxAllowedWeight.getText().toString()))
+                        .setSize(sizeParams)
+                        .setWeight(weightParams)
+                        .setMaxAllowedWeight(Float.parseFloat(maxAllowedWeightInput.getText().toString()))
                         .setIsTunnelsAllowed(isTunnelsAllowed.isChecked())
                         .setIsDifficultTurnsAllowed(isDifTurnsAllowed.isChecked())
                         .setHazardousGoods(getHazardousGoods())

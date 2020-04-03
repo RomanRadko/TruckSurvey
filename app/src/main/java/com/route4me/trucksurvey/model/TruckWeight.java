@@ -38,4 +38,12 @@ public class TruckWeight {
             return TruckWeight.this;
         }
     }
+
+    @Override
+    public String toString() {
+        return "TruckWeight{" +
+                "weight=" + weight +
+                ", weightPerAxle=" + weightPerAxle +
+                '}';
+    }
 }

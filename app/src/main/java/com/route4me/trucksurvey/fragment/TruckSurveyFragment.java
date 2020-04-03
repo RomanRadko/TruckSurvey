@@ -15,7 +15,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.route4me.trucksurvey.R;
-import com.route4me.trucksurvey.model.HazardousGood;
 import com.route4me.trucksurvey.model.TruckParams;
 import com.route4me.trucksurvey.model.TruckSize;
 import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
@@ -23,7 +22,6 @@ import com.route4me.trucksurvey.model.TruckWeight;
 import com.route4me.trucksurvey.view.TruckSurveyView;
 
 import java.util.Arrays;
-import java.util.List;
 
 import static com.route4me.trucksurvey.model.HazardousGood.Explosive;
 import static com.route4me.trucksurvey.model.HazardousGood.Flammable;
@@ -161,17 +159,4 @@ public class TruckSurveyFragment extends Fragment {
         }
     }
 
-    private boolean[] getHazardousSelection() {
-        List<HazardousGood> selectedGoods = truckSurveyView.getData().getHazardousGoods();
-        boolean[] selections = new boolean[HazardousGood.values().length];
-        for (int i = 0; i < selections.length; i++) {
-            for (HazardousGood item : selectedGoods) {
-                if (HazardousGood.values()[i] == item) {
-                    selections[i] = true;
-                    break;
-                }
-            }
-        }
-        return selections;
-    }
 }

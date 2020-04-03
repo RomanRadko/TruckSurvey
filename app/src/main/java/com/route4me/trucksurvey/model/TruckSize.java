@@ -49,4 +49,13 @@ public class TruckSize {
             return TruckSize.this;
         }
     }
+
+    @Override
+    public String toString() {
+        return "TruckSize{" +
+                "height=" + height +
+                ", width=" + width +
+                ", length=" + length +
+                '}';
+    }
 }
