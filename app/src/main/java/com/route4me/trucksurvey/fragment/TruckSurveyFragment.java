@@ -97,16 +97,33 @@ public class TruckSurveyFragment extends Fragment {
             ((EditText) truckSurveyView.findViewById(R.id.trailersCountInput)).setCursorVisible(false);
             switch (requestCode) {
                 case SIZE_DATA_CODE: {
-                    truckSurveyView.updateSize(TruckSize.newBuilder()
-                            .setHeight(Float.parseFloat(data.getExtras().get(TruckSizeFragment.HEIGHT_KEY).toString()))
-                            .setLength(Float.parseFloat(data.getExtras().get(TruckSizeFragment.LENGTH_KEY).toString()))
-                            .setWidth(Float.parseFloat(data.getExtras().get(TruckSizeFragment.WIDTH_KEY).toString())).build());
+                    TruckSize.Builder builder = TruckSize.newBuilder();
+                    String heightStr = data.getExtras().get(TruckSizeFragment.HEIGHT_KEY).toString();
+                    if (!heightStr.equals("")) {
+                        builder.setHeight(Float.parseFloat(heightStr));
+                    }
+                    String lengthStr = data.getExtras().get(TruckSizeFragment.LENGTH_KEY).toString();
+                    if (!lengthStr.equals("")) {
+                        builder.setLength(Float.parseFloat(lengthStr));
+                    }
+                    String widthStr = data.getExtras().get(TruckSizeFragment.WIDTH_KEY).toString();
+                    if (!widthStr.equals("")) {
+                        builder.setWidth(Float.parseFloat(widthStr));
+                    }
+                    truckSurveyView.updateSize(builder.build());
                     break;
                 }
                 case WEIGHT_DATA_CODE: {
-                    truckSurveyView.updateWeight(TruckWeight.newBuilder()
-                            .setWeight(Float.parseFloat(data.getExtras().get(TruckWeightFragment.WEIGHT_KEY).toString()))
-                            .setWeightPerAxle(Float.parseFloat(data.getExtras().get(TruckWeightFragment.WEIGHT_PER_AXLE_KEY).toString())).build());
+                    TruckWeight.Builder builder = TruckWeight.newBuilder();
+                    String weightStr = data.getExtras().get(TruckWeightFragment.WEIGHT_KEY).toString();
+                    if (!weightStr.equals("")) {
+                        builder.setWeight(Float.parseFloat(weightStr));
+                    }
+                    String weightPerAxleStr = data.getExtras().get(TruckWeightFragment.WEIGHT_PER_AXLE_KEY).toString();
+                    if (!weightPerAxleStr.equals("")) {
+                        builder.setWeightPerAxle(Float.parseFloat(weightPerAxleStr));
+                    }
+                    truckSurveyView.updateWeight(builder.build());
                     break;
                 }
                 case HAZARDOUS_GOODS_DATA_CODE: {
@@ -121,23 +138,33 @@ public class TruckSurveyFragment extends Fragment {
         Fragment fragment;
         String tag;
         String headerTitle;
+        Bundle bundle;
         int requestCode = 0;
         switch (screen) {
             case SIZE:
                 fragment = new TruckSizeFragment();
                 tag = TruckSizeFragment.class.getSimpleName();
+                bundle = new Bundle();
+                bundle.putFloat(TruckSizeFragment.HEIGHT_KEY, truckSurveyView.getTruckHeight());
+                bundle.putFloat(TruckSizeFragment.WIDTH_KEY, truckSurveyView.getTruckWidth());
+                bundle.putFloat(TruckSizeFragment.LENGTH_KEY, truckSurveyView.getTruckLength());
+                fragment.setArguments(bundle);
                 headerTitle = getResources().getString(R.string.truck_size_title);
                 requestCode = SIZE_DATA_CODE;
                 break;
             case WEIGHT:
                 fragment = new TruckWeightFragment();
+                bundle = new Bundle();
+                bundle.putFloat(TruckWeightFragment.WEIGHT_KEY, truckSurveyView.getTruckWeight());
+                bundle.putFloat(TruckWeightFragment.WEIGHT_PER_AXLE_KEY, truckSurveyView.getTruckWeightPerAxle());
+                fragment.setArguments(bundle);
                 tag = TruckWeightFragment.class.getSimpleName();
                 headerTitle = getResources().getString(R.string.truck_width_title);
                 requestCode = WEIGHT_DATA_CODE;
                 break;
             case HAZARDOUS_GOODS:
                 fragment = new HazardousGoodsFragment();
-                Bundle bundle = new Bundle();
+                bundle = new Bundle();
                 bundle.putBooleanArray(HazardousGoodsFragment.ITEMS_SELECTION_LIST_KEY, truckSurveyView.getHazardousGoodsSelections());
                 fragment.setArguments(bundle);
                 tag = HazardousGoodsFragment.class.getSimpleName();

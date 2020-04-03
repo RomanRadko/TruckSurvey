@@ -23,17 +23,4 @@
         app:label="@string/lbl"
         app:title="@string/weightPerAxle" />
 
-    <com.route4me.trucksurvey.view.BaseTextView
-        android:id="@+id/saveWeightBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:background="@drawable/btn_border"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:text="@string/save"
-        android:textColor="@android:color/white"
-        android:textSize="20sp" />
-
 </LinearLayout>

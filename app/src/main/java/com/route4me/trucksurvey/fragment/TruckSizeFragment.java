@@ -15,7 +15,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.route4me.trucksurvey.R;
-import com.route4me.trucksurvey.TruckSurveyActivity;
 import com.route4me.trucksurvey.view.ParameterItemView;
 
 public class TruckSizeFragment extends Fragment {
@@ -23,11 +22,9 @@ public class TruckSizeFragment extends Fragment {
     static final String HEIGHT_KEY = "HEIGHT_KEY";
     static final String LENGTH_KEY = "LENGTH_KEY";
     static final String WIDTH_KEY = "WIDTH_KEY";
-    private static final String TAG = TruckSizeFragment.class.getSimpleName();
     private TextView heightInput;
     private TextView lengthInput;
     private TextView widthInput;
-    private TextView saveBtn;
 
     private TextWatcher mTextWatcher = new TextWatcher() {
         @Override
@@ -55,54 +52,40 @@ public class TruckSizeFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (getView() != null) {
             heightInput = getView().findViewById(R.id.height).findViewById(R.id.paramInput);
+            heightInput.setText(String.valueOf(getArguments().getFloat(HEIGHT_KEY, 0f)));
             heightInput.addTextChangedListener(mTextWatcher);
             lengthInput = getView().findViewById(R.id.length).findViewById(R.id.paramInput);
+            lengthInput.setText(String.valueOf(getArguments().getFloat(LENGTH_KEY, 0f)));
             lengthInput.addTextChangedListener(mTextWatcher);
             widthInput = getView().findViewById(R.id.width).findViewById(R.id.paramInput);
+            widthInput.setText(String.valueOf(getArguments().getFloat(WIDTH_KEY, 0f)));
             widthInput.addTextChangedListener(mTextWatcher);
-            saveBtn = getView().findViewById(R.id.saveSizeBtn);
-            saveBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent();
-                    getTargetFragment().onActivityResult(
-                            getTargetRequestCode(),
-                            Activity.RESULT_OK,
-                            intent.putExtra(HEIGHT_KEY, heightInput.getText())
-                                    .putExtra(LENGTH_KEY, lengthInput.getText())
-                                    .putExtra(WIDTH_KEY, widthInput.getText())
-                    );
-                    TruckSurveyActivity.hideKeyboard(getActivity());
-                    getActivity().getSupportFragmentManager().popBackStack();
-                }
-            });
-
             checkFields();
         }
     }
 
     private void checkFields() {
-        String heightInputStr = heightInput.getText().toString();
-        String lengthInputStr = lengthInput.getText().toString();
         String widthInputStr = widthInput.getText().toString();
         ParameterItemView widthView = getView().findViewById(R.id.width);
         //todo: maybe validation for other params should be also added?
-        boolean isWidthRight = false;
+        boolean isWidthRight;
         if (!widthInputStr.equals("")) {
             isWidthRight = Float.parseFloat(widthInputStr) <= 32;
             if (!isWidthRight) {
                 widthView.setErrorState(getString(R.string.wrong_width));
+                return;
             }
         }
-
-        if (heightInputStr.equals("") || lengthInputStr.equals("") || widthInputStr.equals("") || !isWidthRight) {
-            saveBtn.setAlpha(0.6f);
-            saveBtn.setEnabled(false);
-        } else {
-            widthView.hideErrorLbl();
-            saveBtn.setAlpha(1f);
-            saveBtn.setEnabled(true);
-        }
+        widthView.hideErrorLbl();
+        Intent intent = new Intent();
+        getTargetFragment().onActivityResult(
+                getTargetRequestCode(),
+                Activity.RESULT_OK,
+                intent.putExtra(HEIGHT_KEY, heightInput.getText())
+                        .putExtra(LENGTH_KEY, lengthInput.getText())
+                        .putExtra(WIDTH_KEY, widthInput.getText())
+        );
     }
+
 
 }

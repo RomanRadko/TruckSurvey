@@ -15,13 +15,11 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.route4me.trucksurvey.R;
-import com.route4me.trucksurvey.TruckSurveyActivity;
 
 public class TruckWeightFragment extends Fragment {
 
     static final String WEIGHT_KEY = "WEIGHT_KEY";
     static final String WEIGHT_PER_AXLE_KEY = "WEIGHT_PER_AXLE_KEY";
-    private TextView saveBtn;
 
     private TextWatcher mTextWatcher = new TextWatcher() {
         @Override
@@ -51,41 +49,26 @@ public class TruckWeightFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         if (getView() != null) {
             weightInput = getView().findViewById(R.id.weight).findViewById(R.id.paramInput);
+            weightInput.setText(String.valueOf(getArguments().getFloat(WEIGHT_KEY, 0f)));
             weightInput.addTextChangedListener(mTextWatcher);
             weightPerAxleInput = getView().findViewById(R.id.weightPerAxle).findViewById(R.id.paramInput);
+            weightPerAxleInput.setText(String.valueOf(getArguments().getFloat(WEIGHT_PER_AXLE_KEY, 0f)));
             weightPerAxleInput.addTextChangedListener(mTextWatcher);
-            saveBtn = getView().findViewById(R.id.saveWeightBtn);
-            saveBtn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent();
-                    getTargetFragment().onActivityResult(
-                            getTargetRequestCode(),
-                            Activity.RESULT_OK,
-                            intent.putExtra(WEIGHT_KEY, weightInput.getText())
-                                    .putExtra(WEIGHT_PER_AXLE_KEY, weightPerAxleInput.getText())
-                    );
-                    TruckSurveyActivity.hideKeyboard(getActivity());
-                    getActivity().getSupportFragmentManager().popBackStack();
-                }
-            });
             checkFields();
         }
     }
 
     private void checkFields() {
-        saveBtn = getView().findViewById(R.id.saveWeightBtn);
-
         String weightStr = weightInput.getText().toString();
         String weightPerAxleStr = weightPerAxleInput.getText().toString();
 
-        if (weightStr.equals("") || weightPerAxleStr.equals("")) {
-            saveBtn.setAlpha(0.6f);
-            saveBtn.setEnabled(false);
-        } else {
-            saveBtn.setAlpha(1f);
-            saveBtn.setEnabled(true);
-        }
+        Intent intent = new Intent();
+        getTargetFragment().onActivityResult(
+                getTargetRequestCode(),
+                Activity.RESULT_OK,
+                intent.putExtra(WEIGHT_KEY, weightStr)
+                        .putExtra(WEIGHT_PER_AXLE_KEY, weightPerAxleStr)
+        );
     }
 
 }

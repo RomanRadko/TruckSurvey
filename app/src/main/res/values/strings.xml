@@ -34,4 +34,5 @@
     <string name="lbl">lbl</string>
     <string name="save">Save</string>
     <string name="wrong_width">The biggest truck in the world is only 32 ft wide.</string>
+    <string name="zero">0</string>
 </resources>

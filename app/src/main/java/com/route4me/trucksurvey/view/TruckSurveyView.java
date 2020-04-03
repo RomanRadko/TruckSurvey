@@ -129,6 +129,26 @@ public class TruckSurveyView extends LinearLayout {
         hazardousGoodsValue.setText(TextUtils.join(", ", goodsNames));
     }
 
+    public float getTruckHeight() {
+        return parseSizeValue(height.getText().toString());
+    }
+
+    public float getTruckWidth() {
+        return parseSizeValue(width.getText().toString());
+    }
+
+    public float getTruckLength() {
+        return parseSizeValue(length.getText().toString());
+    }
+
+    public float getTruckWeight() {
+        return parseWeightValue(weight.getText().toString());
+    }
+
+    public float getTruckWeightPerAxle() {
+        return parseWeightValue(weightPerAxle.getText().toString());
+    }
+
     public boolean[] getHazardousGoodsSelections() {
         return hazardousGoodsSelections;
     }
@@ -232,4 +252,13 @@ public class TruckSurveyView extends LinearLayout {
         });
     }
 
+    private float parseSizeValue(String input) {
+        input = input.substring(input.indexOf(" ") + 1);
+        input = input.substring(0, input.indexOf(" "));
+        return Float.parseFloat(input);
+    }
+
+    private float parseWeightValue(String input) {
+        return Float.parseFloat(input.substring(0, input.indexOf(" ")));
+    }
 }
