@@ -1,5 +1,7 @@
 package com.route4me.trucksurvey.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.route4me.trucksurvey.R;
+import com.route4me.trucksurvey.model.MultiHazardousGoodsListener;
+import com.route4me.trucksurvey.view.HazardousGoodsView;
 
-public class HazardousGoodsFragment extends Fragment {
+public class HazardousGoodsFragment extends Fragment implements MultiHazardousGoodsListener {
 
+    static final String ITEMS_SELECTION_LIST_KEY = "ITEMS_SELECTION_LIST_KEY";
     private static final String TAG = HazardousGoodsFragment.class.getSimpleName();
+    private HazardousGoodsView hazardousGoodsView;
 
     @Nullable
     @Override
@@ -24,5 +30,18 @@ public class HazardousGoodsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        hazardousGoodsView = view.findViewById(R.id.hazardousGoodsView);
+        hazardousGoodsView.bindData(getArguments().getBooleanArray(ITEMS_SELECTION_LIST_KEY), this);
     }
+
+    @Override
+    public void onItemsSelected(boolean[] selected) {
+        Intent intent = new Intent();
+        getTargetFragment().onActivityResult(
+                getTargetRequestCode(),
+                Activity.RESULT_OK,
+                intent.putExtra(ITEMS_SELECTION_LIST_KEY, selected)
+        );
+    }
+
 }

@@ -2,6 +2,7 @@ package com.route4me.trucksurvey.view;
 
 import android.content.Context;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.View;
@@ -23,7 +24,7 @@ import com.route4me.trucksurvey.model.TruckWeight;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiSpinnerListener {
+public class TruckSurveyView extends LinearLayout {
 
     private TextView trailersCount;
     private EditText trailersCountInput;
@@ -38,8 +39,9 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     private TextView isDifTurnsAllowedLbl;
     private SwitchCompat isTunnelsAllowed;
     private SwitchCompat isDifTurnsAllowed;
-    private List<HazardousGood> selectedHazardousGoods = new ArrayList<>();
+    private boolean[] hazardousGoodsSelections = new boolean[HazardousGood.values().length];
     private TruckSurveySubmitCallback submitCallback;
+    private TruckParams data;
 
     public TruckSurveyView(Context context) {
         super(context);
@@ -57,6 +59,7 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
     }
 
     public void bindData(TruckParams params) {
+        data = params;
         if (params != null) {
             trailersCount.setText(String.valueOf(params.getTrailersCount()));
             trailersCountInput.setText(String.valueOf(params.getTrailersCount()));
@@ -71,9 +74,26 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
             isTunnelsAllowedLbl.setText(params.isTunnelsAllowed() ? "Yes" : "No");
             isDifTurnsAllowed.setChecked(params.isDifficultTurnsAllowed());
             isDifTurnsAllowedLbl.setText(params.isDifficultTurnsAllowed() ? "Yes" : "No");
-            selectedHazardousGoods = params.getHazardousGoods();
-//            hazardousGoodsSpinner.setSelectedItems(params.getHazardousGoods());
+            hazardousGoodsSelections = getHazardousSelections(params.getHazardousGoods());
+            updateHazardousGoods(hazardousGoodsSelections);
         }
+    }
+
+    private boolean[] getHazardousSelections(List<HazardousGood> hazardousGoods) {
+        boolean[] selections = new boolean[HazardousGood.values().length];
+        for (int i = 0; i < selections.length; i++) {
+            for (HazardousGood item : hazardousGoods) {
+                if (HazardousGood.values()[i] == item) {
+                    selections[i] = true;
+                    break;
+                }
+            }
+        }
+        return selections;
+    }
+
+    public TruckParams getData() {
+        return data;
     }
 
     public void setSubmitCallback(TruckSurveySubmitCallback callback) {
@@ -91,17 +111,20 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
         weightPerAxle.setText(getResources().getString(R.string.truckWeightPerAxle, weightParams.getWeightPerAxle()));
     }
 
-    @Override
-    public void onItemsSelected(boolean[] selected) {
-        selectedHazardousGoods.clear();
-        for (boolean selection : selected) {
-            for (HazardousGood hazardousGood : HazardousGood.values()) {
-                if (selection) {
-                    selectedHazardousGoods.add(hazardousGood);
-                    break;
-                }
+    public void updateHazardousGoods(boolean[] selected) {
+        hazardousGoodsSelections = selected;
+        TextView hazardousGoodsValue = findViewById(R.id.hazardousGoodsValue);
+        List<String> goodsNames = new ArrayList<>();
+        for (int i = 0; i < hazardousGoodsSelections.length; i++) {
+            if (hazardousGoodsSelections[i]) {
+                goodsNames.add(HazardousGood.values()[i].name().replace("_", " "));
             }
         }
+        hazardousGoodsValue.setText(TextUtils.join(", ", goodsNames));
+    }
+
+    public boolean[] getHazardousGoodsSelections() {
+        return hazardousGoodsSelections;
     }
 
     private void init() {
@@ -168,17 +191,7 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
                 isDifTurnsAllowedLbl.setText(isChecked ? "Yes" : "No");
             }
         });
-        initHazardousGoodsSpinner();
         initSubmitBtn();
-    }
-
-    private void initHazardousGoodsSpinner() {
-        View hazardousGoodsBtn = findViewById(R.id.hazardousGoodsBtn);
-//        List<String> items = new ArrayList<>();
-//        for (HazardousGood item : HazardousGood.values()) {
-//            items.add(item.name());
-//        }
-//        hazardousGoodsSpinner.setItems(items, "", this);
     }
 
     private void initSubmitBtn() {
@@ -204,9 +217,20 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
                         .setMaxAllowedWeight(Float.parseFloat(maxAllowedWeight.getText().toString()))
                         .setIsTunnelsAllowed(isTunnelsAllowed.isChecked())
                         .setIsDifficultTurnsAllowed(isDifTurnsAllowed.isChecked())
-                        .setHazardousGoods(selectedHazardousGoods)
+                        .setHazardousGoods(getHazardousGoods())
                         .build();
+            }
+
+            private List<HazardousGood> getHazardousGoods() {
+                List<HazardousGood> result = new ArrayList<>();
+                for (int i = 0; i < hazardousGoodsSelections.length; i++) {
+                    if (hazardousGoodsSelections[i]) {
+                        result.add(HazardousGood.values()[i]);
+                    }
+                }
+                return result;
             }
         });
     }
+
 }

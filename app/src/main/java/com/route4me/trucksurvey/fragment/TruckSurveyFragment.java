@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.route4me.trucksurvey.R;
+import com.route4me.trucksurvey.model.HazardousGood;
 import com.route4me.trucksurvey.model.TruckParams;
 import com.route4me.trucksurvey.model.TruckSize;
 import com.route4me.trucksurvey.model.TruckSurveySubmitCallback;
@@ -22,6 +23,7 @@ import com.route4me.trucksurvey.model.TruckWeight;
 import com.route4me.trucksurvey.view.TruckSurveyView;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.route4me.trucksurvey.model.HazardousGood.Explosive;
 import static com.route4me.trucksurvey.model.HazardousGood.Flammable;
@@ -66,6 +68,7 @@ public class TruckSurveyFragment extends Fragment {
         truckSurveyView.setSubmitCallback(new TruckSurveySubmitCallback() {
             @Override
             public void onSubmit(TruckParams params) {
+                //here is a final place where form is submitted
                 Log.d(TAG, "TruckParams ::: " + params);
             }
         });
@@ -109,7 +112,7 @@ public class TruckSurveyFragment extends Fragment {
                     break;
                 }
                 case HAZARDOUS_GOODS_DATA_CODE: {
-
+                    truckSurveyView.updateHazardousGoods((boolean[]) data.getExtras().get(HazardousGoodsFragment.ITEMS_SELECTION_LIST_KEY));
                     break;
                 }
             }
@@ -136,6 +139,9 @@ public class TruckSurveyFragment extends Fragment {
                 break;
             case HAZARDOUS_GOODS:
                 fragment = new HazardousGoodsFragment();
+                Bundle bundle = new Bundle();
+                bundle.putBooleanArray(HazardousGoodsFragment.ITEMS_SELECTION_LIST_KEY, truckSurveyView.getHazardousGoodsSelections());
+                fragment.setArguments(bundle);
                 tag = HazardousGoodsFragment.class.getSimpleName();
                 headerTitle = getResources().getString(R.string.hazardous_goods_title);
                 requestCode = HAZARDOUS_GOODS_DATA_CODE;
@@ -153,5 +159,19 @@ public class TruckSurveyFragment extends Fragment {
             transaction.addToBackStack(tag);
             transaction.commit();
         }
+    }
+
+    private boolean[] getHazardousSelection() {
+        List<HazardousGood> selectedGoods = truckSurveyView.getData().getHazardousGoods();
+        boolean[] selections = new boolean[HazardousGood.values().length];
+        for (int i = 0; i < selections.length; i++) {
+            for (HazardousGood item : selectedGoods) {
+                if (HazardousGood.values()[i] == item) {
+                    selections[i] = true;
+                    break;
+                }
+            }
+        }
+        return selections;
     }
 }

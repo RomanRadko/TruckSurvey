@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.route4me.trucksurvey.view.HazardousGoodsView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:id="@+id/hazardousGoodsView"
     android:layout_height="match_parent"
-    android:clickable="true">
-
-</FrameLayout>
+    android:background="@android:color/white" />

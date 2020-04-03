@@ -9,7 +9,7 @@ public enum HazardousGood {
     Poison,
     Radioactive,
     Corrosive,
-    PoisonousInhalation,
-    HarmfulToWater,
+    Poisonous_Inhalation,
+    Harmful_To_Water,
     Other
 }
