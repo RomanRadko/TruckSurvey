@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -92,6 +93,7 @@ public class TruckSurveyFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == Activity.RESULT_OK) {
+            ((EditText) truckSurveyView.findViewById(R.id.trailersCountInput)).setCursorVisible(false);
             switch (requestCode) {
                 case SIZE_DATA_CODE: {
                     truckSurveyView.updateSize(TruckSize.newBuilder()

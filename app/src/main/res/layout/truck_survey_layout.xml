@@ -24,6 +24,7 @@
                 android:layout_gravity="start"
                 android:layout_marginTop="20dp"
                 android:gravity="center"
+                android:focusable="true"
                 android:text="@string/trailersCount"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="18sp" />

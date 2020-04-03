@@ -125,6 +125,12 @@ public class TruckSurveyView extends LinearLayout implements MultiSpinner.MultiS
 
             }
         });
+        trailersCountInput.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                trailersCountInput.setCursorVisible(true);
+            }
+        });
         height = findViewById(R.id.truckHeightValue);
         width = findViewById(R.id.truckWidthValue);
         length = findViewById(R.id.truckLengthValue);
