@@ -1,2 +1,3 @@
+include ':survey'
 rootProject.name='TrackSurvey'
 include ':app'

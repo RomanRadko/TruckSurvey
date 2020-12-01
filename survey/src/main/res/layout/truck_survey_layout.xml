@@ -1,0 +1,391 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    tools:context="com.route4me.survey.TruckSurveyActivity">
+
+    <RelativeLayout
+        android:id="@+id/truckTrailersNumberContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/trailersCountLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:focusable="true"
+                android:text="@string/trailersCount"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/trailersCountValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <com.route4me.survey.view.BaseEditTextView
+            android:id="@+id/trailersCountInput"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_input_bg"
+            android:gravity="center"
+            android:maxLength="2"
+            android:inputType="number"
+            android:textColor="@color/colorPrimaryDark" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/truckSizeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/truckTrailersNumberContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckSizeLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/truckSize"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckHeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/truckHeight"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckLengthValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/truckLength"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckWidthValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/truckWidth"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/truckSizeBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:src="@drawable/ic_settings" />
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/truckWeightContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/truckSizeContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckWeightLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/truckWeightLbl"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/truckWeightValue"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/truckWeightPerAxleValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/truckWeightPerAxle"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/truckWeightBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:src="@drawable/ic_settings" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/maxAllowedTruckWeightContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/truckWeightContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/maxAllowedWeightLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/maxAllowedWeight"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/maxAllowedWeightValue"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:text="@string/maxTruckWeight"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <com.route4me.survey.view.BaseEditTextView
+            android:id="@+id/maxAllowedWeightInput"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:background="@color/color_input_bg"
+            android:gravity="center"
+            android:inputType="numberDecimal"
+            android:maxLength="7"
+            android:textColor="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/hazardousGoodsContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/maxAllowedTruckWeightContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/hazardousGoodsLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/hazardous_goods"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/hazardousGoodsValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="start"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/hazardousGoodsBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:src="@drawable/ic_settings" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/tunnelsAllowedContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/hazardousGoodsContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/tunnelsAllowedLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/are_tunnels_allowed"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/tunnelsAllowedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/isTunnelsAllowed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:shadowColor="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/difficultTurnsAllowedContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tunnelsAllowedContainer">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:orientation="vertical">
+
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/difficultTurnsAllowedLbl"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_gravity="start"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="@string/are_dif_turns_allowed"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="18sp" />
+
+            <com.route4me.survey.view.BaseTextView
+                android:id="@+id/difficultTurnsAllowedValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:gravity="center"
+                android:textColor="@color/colorSecondaryDark"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/isDifficultTurnsAllowed"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:shadowColor="@color/colorPrimaryDark" />
+
+    </RelativeLayout>
+
+    <com.route4me.survey.view.BaseTextView
+        android:id="@+id/submitBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/difficultTurnsAllowedContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_border"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:text="@string/submit"
+        android:textColor="@android:color/white"
+        android:textSize="24sp" />
+
+</RelativeLayout>
